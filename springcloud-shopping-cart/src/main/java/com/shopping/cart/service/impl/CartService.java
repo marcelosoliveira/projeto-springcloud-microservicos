@@ -11,7 +11,6 @@ import com.shopping.cart.service.interfaces.CartInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -36,7 +35,7 @@ public class CartService implements CartInterface {
 
         Cart cart;
         Optional<Cart> savedCart = cartRepository.findById(id);
-        
+
         if (savedCart.isPresent()) {
             cart = savedCart.get();
         }
