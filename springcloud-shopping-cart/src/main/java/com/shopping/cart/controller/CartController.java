@@ -1,9 +1,8 @@
 package com.shopping.cart.controller;
 
 import com.shopping.cart.dto.CartDTO;
-import com.shopping.cart.model.Cart;
 import com.shopping.cart.model.Item;
-import com.shopping.cart.service.CartService;
+import com.shopping.cart.service.impl.CartService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ public class CartController {
     private CartService cartService;
 
     @PostMapping("cart/{id}")
-    public Cart addItemController(@PathVariable Long id, @RequestBody Item item) {
+    public ResponseEntity<Object> addItemController(@PathVariable Long id, @RequestBody Item item) {
         return cartService.addItemService(id, item);
     }
 
