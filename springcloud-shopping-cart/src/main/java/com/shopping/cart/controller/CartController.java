@@ -1,5 +1,6 @@
 package com.shopping.cart.controller;
 
+import com.shopping.cart.dto.CartDTO;
 import com.shopping.cart.model.Cart;
 import com.shopping.cart.model.Item;
 import com.shopping.cart.service.CartService;
@@ -21,7 +22,7 @@ public class CartController {
     }
 
     @GetMapping("cart/{id}")
-    public Cart findByIdController(@PathVariable Long id) {
+    public CartDTO findByIdController(@PathVariable Long id) {
         return cartService.findByIdService(id);
     }
 

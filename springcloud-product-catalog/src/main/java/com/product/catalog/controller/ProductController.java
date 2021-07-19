@@ -6,6 +6,7 @@ import com.product.catalog.service.impl.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/product")
-    public MessageResponseDTO createProductController(@RequestBody ProductDTO productDTO) {
+    public MessageResponseDTO createProductController(@Valid @RequestBody ProductDTO productDTO) {
         return productService.createProductService(productDTO);
     }
 

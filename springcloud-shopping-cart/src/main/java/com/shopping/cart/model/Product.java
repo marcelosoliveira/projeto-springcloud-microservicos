@@ -1,26 +1,20 @@
-package com.product.catalog.dto.request;
+package com.shopping.cart.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDTO {
+public class Product {
 
-    @NotNull
+    @Id
     private Long id;
-
-    @NotBlank
     private String name;
-
-    @NotNull
     private Integer amount;
 
 }

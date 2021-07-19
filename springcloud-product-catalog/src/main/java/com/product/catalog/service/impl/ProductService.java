@@ -2,19 +2,20 @@ package com.product.catalog.service.impl;
 
 import com.product.catalog.dto.request.ProductDTO;
 import com.product.catalog.dto.response.MessageResponseDTO;
+import com.product.catalog.exception.ProductNotFoundException;
 import com.product.catalog.mapper.ProductMapper;
 import com.product.catalog.model.Product;
 import com.product.catalog.repository.ProductRepository;
+import com.product.catalog.service.interfaces.ProductInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ProductService {
+public class ProductService implements ProductInterface {
 
     private ProductRepository productRepository;
 
@@ -33,6 +34,7 @@ public class ProductService {
     }
 
     public ProductDTO findByProductId(Long id) {
+        verifyExistProduct(id);
         Product product = productRepository.findById(id).get();
         return productMapper.toProductDTO(product);
     }
@@ -44,4 +46,11 @@ public class ProductService {
                 .build();
     }
 
+
+    @Override
+    public void verifyExistProduct(Long id) {
+        this.productRepository.findById(id).orElseThrow(
+                () -> new ProductNotFoundException("Produto não encontrado!")
+        );
+    }
 }
